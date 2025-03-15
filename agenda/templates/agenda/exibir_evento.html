@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Evento: {{evento.name}}</h1>
+    <p>Categoria: {{evento.name}}</p>
+    {% if evento.local %}
+        <p>Local: {{evento.local}}</p>
+    {% endif %}
+    {% if evento.link %}
+        <p>Link: {{evento.link}}</p>
+    {% endif %}
+    <p>Data: {{evento.data}}</p>
+    <p>Participantes: {{evento.participantes}}</p>
+    <br />
+    <form action="" method="post">
+        <button type="submit">Participar</button>
+    </form>
+    <p><a href="{% url 'listar_eventos'%}"> Ir para listagem de eventos</a></p>
+</body>
+</html>

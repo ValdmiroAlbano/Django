@@ -1,20 +1,20 @@
 from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404
 
+from agenda.models import Eventos
 
-def index(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
+def listar_eventos(request):
+    evento = Eventos.objects.all()
+    return render(
+        request=request,
+        context={"eventos": evento},
+        template_name="agenda/listar_eventos.html"
+    )
 
-def exibir_eventos(request):
-    evento = {
-        "nome" : "Nossa App1",
-        "categoria": "Apenas 1",
-        "local": "Luanda"
-    }
-
-    return HttpResponse (
-        f"""
-        <h1>Evento: {evento["nome"]}</h1>
-        <p>Categoria: {evento["categoria"]}</p>
-        <p>Local: {evento["local"]}</p>
-        """
+def exibir_evento(request, id):
+    evento = get_object_or_404(Eventos, id=id)
+    return render(
+        request=request,
+        context={"evento": evento},
+        template_name="agenda/exibir_evento.html"
     )
